@@ -1,16 +1,17 @@
 #include "../include/shell.h"
-string ver = "1.0.0"; 
+string ver = "1.0.1"; 
 string license = "Licensed under the GNU General Public License v3.0";
+
 void launch_shell(int n)
-{
+{		
+
+	
 	string ch = (string) malloc(200); // util.h
 	int counter = 0;
-	do
+	do	
 	{
-			print("[");
-			print(int_to_string(n));
-			print("] ");
-			print("user@winos:~$ ");
+
+			print("shell> ");
 		    ch = readStr(); //memory_copy(readStr(), ch,100);
 		    if(strEql(ch,"cmd"))
 		    {
@@ -73,7 +74,7 @@ void launch_shell(int n)
 		    
 		    else
 		    {
-		            print("\nBad command!\n");
+		            print("\nBad command, please do 'help' for commands\n");
 		            print("");
 		    } 
 	} while (!strEql(ch,"shutdown"));
@@ -330,7 +331,7 @@ void help()
 void about()
 {	
 	print("\n----------------------------------------------------------");
-	print("\nWinOS Open Source Operating System Project");
+	print("\nWin's Open Source Kernel Project");
 	print("\nMaintained by: WinsDominoes");
 	print("\nbased on github.com/iknowbrain/NIDOS");
 	print("\nVersion: ");
