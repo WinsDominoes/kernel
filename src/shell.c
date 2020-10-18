@@ -323,7 +323,7 @@ void help()
 	print("\nshutdown  - Quits the current shell");
 	print("\ncolor     - Changes the colors of the terminal");
 	print("\ndivide    - Computes the quotient of 2 numbers");
-	print("\ndivide    - Computes the product of 2 numbers");
+	print("\nmultiply  - Computes the product of 2 numbers");
 	print("\n\n");
 }
 
