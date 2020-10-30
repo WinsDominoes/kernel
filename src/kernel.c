@@ -8,7 +8,7 @@ kmain()
 	isr_install();
 	clearScreen();
 	print("\n");
-	print("Starting the Kernel\n");
+	print("Starting the Kernel...\n");
 	print("\n"); 
 	print_colored("------------------------------------------------------\n",2,0);
 	print_colored("# Win's Simple Kernel\n", 14,0); 

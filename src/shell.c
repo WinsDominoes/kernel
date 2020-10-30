@@ -1,17 +1,17 @@
 #include "../include/shell.h"
-string ver = "1.0.1"; 
+string ver = "1.0.2"; 
 string license = "Licensed under the GNU General Public License v3.0";
 
 void launch_shell(int n)
 {		
-
-	
 	string ch = (string) malloc(200); // util.h
 	int counter = 0;
 	do	
 	{
 
-			print("shell> ");
+			print("[");
+			print(int_to_string(n));
+			print("] kernel> ");
 		    ch = readStr(); //memory_copy(readStr(), ch,100);
 		    if(strEql(ch,"cmd"))
 		    {
@@ -66,12 +66,32 @@ void launch_shell(int n)
 		    {
 		    	divide();
 		    }
+			else if(strEql(ch,"minus"))
+		    {
+		    	minus();
+		    }
 			else if(strEql(ch,"about"))
 		    {
 		    	about();
 		    }
-		    
-		    
+			else if(strEql(ch,"exit"))
+		    {
+		    	print("\nShell Closed.\n");
+				launch_shell(n-1);
+		    }
+			else if(strEql(ch,"game")) {
+				game();
+			}
+		    	else if(strEql(ch,"github")) {
+		   		github();
+			}
+			else if(strEql(ch,"compile")) {
+				compile();
+			}
+			else if(strEql(ch,"kernel")) {
+				kernel();
+			}
+
 		    else
 		    {
 		            print("\nBad command, please do 'help' for commands\n");
@@ -106,6 +126,56 @@ void echo()
 	print("\n\n");
 	print("---------------------\n");
 }
+
+void game() {
+	print("\nMy simple game made with C on my kernel!");
+	print("\n");
+	print("\nDo you want to start the game?");
+	print("\nType (y/N) ");
+
+	string input_intro = readStr();
+
+	if(strEql(input_intro,"y")) {
+		print("\nAlright let's start!");
+	} else {
+		print("\nGoodbye ;(\n");
+
+		launch_shell(0);
+	}
+
+	// question 1
+
+	print("\n1. What is the capital of Germany? \nAnswer: ");
+	string input_answer_1 = readStr();
+
+	if(strEql(input_answer_1, "berlin")) {
+		print("\nGood Job!");
+	} else {
+		print("\nWrong answer, the correct answer is berlin\n");
+	}
+
+	// question 2
+
+	print("\n2. What was the old name of Myanmar \nAnswer: ");
+	string input_answer_2 = readStr();
+
+	if(strEql(input_answer_2, "burma")) {
+		print("\nNice job!");
+	} else {
+		print("\nOof that's the wrong answer. It's Burma");
+	}
+
+	// question 3
+	print("\n3. What year did the COVID-19 started spreading \nAnswer: ");
+	string input_answer_3 = readStr();
+
+	if(strEql(input_answer_3, "2020")) {
+		print("\nGreat Job! It is 2020\n");
+	} else {
+		print("\nWrong, it is 2020\n");
+	}
+}
+
 void sort()
 {	
 	print("\n---------------------");
@@ -307,6 +377,17 @@ void divide()
 	print("\n");
 }
 
+void minus()
+{
+	print("\nFirst Digit: ");
+	int num1 = str_to_int(readStr());
+	print("\nSecond Digit: ");
+	int num2 = str_to_int(readStr());
+	print("\nResult: ");
+	print(int_to_string(num1-num2)); // util.h
+	print("\n");
+}
+
 void help()
 {	
 	print("\nWinOS Help, version ");
@@ -325,6 +406,8 @@ void help()
 	print("\ncolor     - Changes the colors of the terminal");
 	print("\ndivide    - Computes the quotient of 2 numbers");
 	print("\nmultiply  - Computes the product of 2 numbers");
+	print("\nminus     - Computes the difference of 2 numbers");
+	print("\nabout     - Shows you about the open-source project");
 	print("\n\n");
 }
 
@@ -333,6 +416,7 @@ void about()
 	print("\n----------------------------------------------------------");
 	print("\nWin's Open Source Kernel Project");
 	print("\nMaintained by: WinsDominoes");
+	print("\n");
 	print("\nbased on github.com/iknowbrain/NIDOS");
 	print("\nVersion: ");
 	print(ver);
@@ -342,4 +426,35 @@ void about()
 	print("\n----------------------------------------------------------");
 
 	print("\n\n");
+}
+
+void github() {
+	print("\nVisit the github repository at: ");
+	print("\nhttps://github.com/WinsDominoes/kernel");
+	print("\nThe repo would be updated with the newest release");
+	print("\nEvery Week (or less)");
+	
+	print("\n\n");
+}
+
+void compile() {
+	print("\n--------------------------------------------------");
+	print("\nCompiling the Kernel");
+	print("\nOn Debian / Ubuntu Distros: ");
+	print("\n1. Clone the repository");
+	print("\n'git clone https://github.com/WinsDominoes/kernel'");
+	print("\n2. Install the following packages");
+	print("\nbuild-essential, xorriso, nasm, qemu (for emulation)and make (if not installed)");
+	print("\n3. Compiling the kernel part :D");
+	print("\ndo 'make', which will compile the kernel and start up QEMU");
+	print("\n3.1 Compiling and make the ISO image");
+	print("\ndo 'make build', which will make an iso called 'winos-release.iso'");
+
+	print("\n\n");
+}
+
+void kernel() {
+	print_colored("\nWin's Simple Kernel, version: ",14,0);
+	print_colored(ver,4,0);
+	print("\n");
 }
